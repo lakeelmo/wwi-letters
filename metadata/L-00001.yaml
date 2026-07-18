@@ -1,0 +1,59 @@
+---
+id: L-00001
+date: 1919-04-10
+date_qualifier: exact
+date_as_written: "April 10-1919"
+sender:
+  as_written: null
+  normalized: null
+  notes: "Soldier awaiting discharge; first name/surname not on these pages"
+recipient:
+  as_written: "Dearest Darling Blanche"
+  normalized: "Blanche"
+  notes: "Given name only; surname unknown"
+place_written:
+  as_written: null
+  normalized: null
+  notes: "Writer references Nashville and catching a train (#2); likely near a demobilization point"
+place_mentioned:
+  - as_written: "Nashville"
+    normalized: "Nashville, Tennessee"
+stationery: "Army and Navy YMCA — With the Colors"
+unit_or_service: null
+page_count: 2
+image_paths:
+  - masters/19190410_blanche_p01.png
+  - masters/19190410_blanche_p02.png
+derivative_paths:
+  - derivatives/19190410_blanche_p01.jpg
+  - derivatives/19190410_blanche_p02.jpg
+topics:
+  - mail
+  - discharge
+  - payroll
+  - exams
+  - reunion
+  - affection
+people_mentioned:
+  - Blanche
+censor_marks: false
+hand: hand-blanche-correspondent
+htr_engine: vision-vlm+apple-vision-baseline
+htr_confidence: medium
+review_status: raw
+rights: family-archive-private
+provenance: "User-provided HEIC scans (Messages attachments); digitized 2026-07-18"
+scan_qc:
+  resolution_px: "4960×6458 (derivatives)"
+  dpi_estimate: "excellent for HTR (≥300 DPI equivalent)"
+  medium: "pencil on tan YMCA lined stationery"
+  issues:
+    - low contrast (graphite on buff paper)
+    - horizontal fold creases
+    - dashed ruling intersects letterforms
+    - Apple Vision OCR failed on handwriting (letterhead only)
+notes: >
+  Post-Armistice demobilization letter (April 1919). Writer reports exams,
+  signed discharges and payroll, expects discharge imminently, and asks
+  Blanche to meet in Nashville. Affectionate close. Filename stem 19190410bnpg
+  suggests date + initials (bn/pg); confirm against envelope if available.

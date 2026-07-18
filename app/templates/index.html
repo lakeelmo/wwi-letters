@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WWI Letters Archive</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <p class="brand">WWI Letters</p>
+    <p class="tagline">Scan · Transcribe · Catalogue</p>
+  </header>
+  <main class="wrap">
+    <h1>Collection</h1>
+    <p class="lede">{{ letters|length }} letter{% if letters|length != 1 %}s{% endif %} catalogued.</p>
+    <ul class="letter-list">
+      {% for letter in letters %}
+      <li>
+        <a href="/letter/{{ letter.id }}">
+          <span class="id">{{ letter.id }}</span>
+          <span class="date">{{ letter.date or "undated" }}</span>
+          <span class="who">
+            {% if letter.sender and letter.sender.normalized %}{{ letter.sender.normalized }}{% else %}Unknown writer{% endif %}
+            →
+            {% if letter.recipient and letter.recipient.normalized %}{{ letter.recipient.normalized }}{% elif letter.recipient and letter.recipient.as_written %}{{ letter.recipient.as_written }}{% else %}Unknown{% endif %}
+          </span>
+          <span class="status status-{{ letter.review_status }}">{{ letter.review_status }}</span>
+        </a>
+      </li>
+      {% else %}
+      <li class="empty">No letters yet. Add YAML under <code>metadata/</code>.</li>
+      {% endfor %}
+    </ul>
+  </main>
+</body>
+</html>

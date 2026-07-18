@@ -1,0 +1,12 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      # Live-edit transcripts & metadata on the host
+      - ./metadata:/app/metadata
+      - ./transcripts:/app/transcripts
+      - ./derivatives:/app/derivatives
+      - ./app:/app/app
+    restart: unless-stopped

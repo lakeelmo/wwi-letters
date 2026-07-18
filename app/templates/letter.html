@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ letter.id }} · WWI Letters</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <p class="brand"><a href="/">WWI Letters</a></p>
+    <p class="tagline">{{ letter.id }} · {{ letter.date }}</p>
+  </header>
+  <main class="wrap letter-view">
+    {% if request.query_params.get('saved') %}
+    <p class="flash">Saved. Review status updated if it was still raw.</p>
+    {% endif %}
+
+    <section class="meta-bar">
+      <div>
+        <h1>{{ letter.recipient.normalized if letter.recipient and letter.recipient.normalized else letter.id }}</h1>
+        <p class="sub">
+          {{ letter.stationery or "Correspondence" }}
+          {% if letter.place_mentioned %} · {{ letter.place_mentioned[0].normalized or letter.place_mentioned[0].as_written }}{% endif %}
+        </p>
+      </div>
+      <div class="pills">
+        <span class="status status-{{ letter.review_status }}">{{ letter.review_status }}</span>
+        <span class="pill">{{ letter.htr_confidence }} confidence</span>
+        <span class="pill">{{ letter.page_count }} pages</span>
+      </div>
+    </section>
+
+    <nav class="pages">
+      {% for p in pages %}
+      <a class="{% if p.n == page %}active{% endif %}" href="/letter/{{ letter.id }}?page={{ p.n }}">Page {{ p.n }}</a>
+      {% endfor %}
+    </nav>
+
+    <div class="split">
+      <figure class="scan">
+        <img src="{{ current.url }}" alt="Scan page {{ page }}" />
+      </figure>
+      <form class="editor" method="post" action="/letter/{{ letter.id }}/save">
+        <input type="hidden" name="page" value="{{ page }}" />
+        <label for="diplomatic">Diplomatic transcript — page {{ page }}</label>
+        <textarea id="diplomatic" name="diplomatic" rows="22">{{ diplomatic }}</textarea>
+        <label for="reading">Reading copy (whole letter)</label>
+        <textarea id="reading" name="reading" rows="12">{{ reading }}</textarea>
+        <button type="submit">Save corrections</button>
+        <p class="hint">Mark uncertain words with [?like this]. Saving marks the letter corrected.</p>
+      </form>
+    </div>
+
+    {% if letter.notes %}
+    <section class="notes">
+      <h2>Catalogue notes</h2>
+      <p>{{ letter.notes }}</p>
+    </section>
+    {% endif %}
+  </main>
+</body>
+</html>
