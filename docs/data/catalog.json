@@ -1,0 +1,52 @@
+{
+  "generated": true,
+  "letters": [
+    {
+      "id": "L-00001",
+      "date": "1919-04-10",
+      "date_as_written": "April 10-1919",
+      "sender": {
+        "as_written": null,
+        "normalized": null,
+        "notes": "Soldier awaiting discharge; first name/surname not on these pages"
+      },
+      "recipient": {
+        "as_written": "Dearest Darling Blanche",
+        "normalized": "Blanche",
+        "notes": "Given name only; surname unknown"
+      },
+      "place_mentioned": [
+        {
+          "as_written": "Nashville",
+          "normalized": "Nashville, Tennessee"
+        }
+      ],
+      "stationery": "Army and Navy YMCA — With the Colors",
+      "topics": [
+        "mail",
+        "discharge",
+        "payroll",
+        "exams",
+        "reunion",
+        "affection"
+      ],
+      "page_count": 2,
+      "review_status": "raw",
+      "htr_confidence": "medium",
+      "notes": "Post-Armistice demobilization letter (April 1919). Writer reports exams, signed discharges and payroll, expects discharge imminently, and asks Blanche to meet in Nashville. Affectionate close. Filename stem 19190410bnpg suggests date + initials (bn/pg); confirm against envelope if available.",
+      "reading": "April 10, 1919\n\nDearest Darling Blanche,\n\nI received your letter that you wrote Tuesday yesterday morning about nine o'clock, and it was stamped at 8:30 Tuesday night in Nashville, so it sure did make a quick trip, didn't it.\n\nWe passed our exam yesterday and signed our discharges and also the payroll last night, and they say we will get our discharge and all out if nothing happens, and I sure hope we get them soon that morning so I can catch #2 or the [train?].\n\nPlease fly out so I can get to Nashville safe [this evening?], so we can fly together Saturday night and we can go out home Sunday. Just think — only two more days and then we can look each other [in the face?] and just keep on loving each other and not have to be studying about when we have to depart again.\n\nOh honey, I just want you to always love me, and when I am tired or feeling bad I will be perfectly happy if you will just put your arms around me and kiss me.\n\n---\nEditorial notes: Light punctuation and spelling normalization (past→passed, pay roll→payroll). Bracketed words remain uncertain pending human review against the scans.\n",
+      "pages": [
+        {
+          "n": 1,
+          "image": "images/19190410_blanche_p01.jpg",
+          "diplomatic": "[Letterhead: Army and Navy Young Men's Christian Association — \"With the Colors\" / YMCA]\n\nApril 10-1919\n\nDearest Darling Blanche,\n\nI received your letter that you wrote\nTuesday yesterday morning about\nnine o'clock and it was stamped at 8 30\nTuesday night in Nashville\nso it sure did make\na quick trip didn't it.\nWe past our exam\nyesterday and signed\nour discharges and also\nthe pay roll last\nnight and they say\nwe will get our discharge\nand all out if nothing happens and I\nsure hope we get them soon that\nmorning so I can catch #2 or the\n[?continued on page 2]\n"
+        },
+        {
+          "n": 2,
+          "image": "images/19190410_blanche_p02.jpg",
+          "diplomatic": "[Letterhead: Army and Navy Young Men's Christian Association — \"With the Colors\" / YMCA]\n\nPlease [?fly] out so I can\nget to Nashville safe [?eve]\nso we can [?fly] together\nSat. night and we can\ngo out home sunday.\nJust think only [?two] more\ndays and then we\ncan look each other [?in the face / and]\njust keep on loving\neach other and not have\nto be studying about\nwhen we have to depart\nagain.\nOh honey I just want\nyou to always love\nme and when I am\ntired or feeling bad I\nwill be perfectly happy\nif you will just put\nyour arms [?a]round me and\nkiss me.\n"
+        }
+      ]
+    }
+  ]
+}
