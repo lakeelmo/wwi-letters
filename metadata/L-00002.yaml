@@ -81,7 +81,12 @@ scan_qc:
     - includes hand-drawn family-tree diagram (layout, not pure text)
     - inserted caret word on p2 (Bicycle)
 notes: >
-  Modern family circular by Uncle Franny (not WWI). Opens with family tree
+  Modern family circular by Uncle Franny. Opens with family tree
   (Frans & Nancy → Lea, Auko, Ingrid, Jorgen) then geographic updates:
   California, Texas, Missouri, then East Coast (New Haven, Cape Cod, Boston).
-  Excellent HTR test case: high contrast, clear headings, dense proper nouns.
+summary: >
+  Undated family circular from Uncle Franny — a hand-drawn family tree plus
+  short updates on relatives in California, Texas, Missouri, and the East Coast.
+context: >
+  A cheerful multi-page newsletter-style letter covering careers, pets, travel,
+  and engagements across the extended family.

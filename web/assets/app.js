@@ -49,59 +49,45 @@
     return "To " + (to || letter.id);
   }
 
-  function placeLabel(letter) {
-    const p = (letter.place_mentioned || [])[0];
-    if (!p) return "";
-    return p.normalized || p.as_written || "";
+  function placeLine(letter) {
+    const places = (letter.place_mentioned || [])
+      .map(function (p) {
+        return p.normalized || p.as_written;
+      })
+      .filter(Boolean);
+    if (!places.length) return "";
+    if (places.length <= 2) return places.join(" · ");
+    return places.slice(0, 2).join(" · ") + " +";
   }
 
-  /** Turn plain transcript text into readable HTML paragraphs / headings. */
-  function formatText(raw, mode) {
+  function formatText(raw) {
     if (!raw || !String(raw).trim()) {
       return '<p class="empty-copy">No transcript yet.</p>';
     }
     let text = String(raw).replace(/\r\n/g, "\n").trim();
-
-    // Drop editorial footer from reading copies
     text = text.replace(/\n---\n[\s\S]*$/, "").trim();
+    text = text.replace(/^\[Letterhead:[^\]]*\]\s*/i, "");
 
-    // Strip letterhead clutter from diplomatic view
-    if (mode === "diplomatic") {
-      text = text.replace(/^\[Letterhead:[^\]]*\]\s*/i, "");
-    }
-
-    const blocks = text.split(/\n\s*\n/);
-    return blocks
+    return text
+      .split(/\n\s*\n/)
       .map(function (block) {
-        const lines = block.split("\n").map(function (l) {
-          return l.trim();
-        }).filter(Boolean);
+        const lines = block
+          .split("\n")
+          .map(function (l) {
+            return l.trim();
+          })
+          .filter(Boolean);
         if (!lines.length) return "";
 
-        // Single short line that looks like a section heading
         if (
           lines.length === 1 &&
           lines[0].length < 48 &&
           !/[.!?]$/.test(lines[0]) &&
-          (/^[A-Z]/.test(lines[0]) || /:$/.test(lines[0]) || /continued/i.test(lines[0]))
+          (/^[A-Z.]/.test(lines[0]) || /:$/.test(lines[0]) || /continued/i.test(lines[0]))
         ) {
           return "<h3>" + escapeHtml(lines[0].replace(/:$/, "")) + "</h3>";
         }
 
-        // Diplomatic: preserve soft line breaks inside a paragraph
-        if (mode === "diplomatic") {
-          return (
-            "<p>" +
-            lines
-              .map(function (l) {
-                return escapeHtml(l);
-              })
-              .join("<br>") +
-            "</p>"
-          );
-        }
-
-        // Reading: join wrapped lines into flowing prose
         return "<p>" + escapeHtml(lines.join(" ")) + "</p>";
       })
       .join("");
@@ -128,11 +114,11 @@
       (letters.length === 1 ? "" : "s") +
       "</span></p>" +
       '<h1 class="home-brand">Family Archive</h1>' +
-      '<p class="home-lead">Letters and family papers — scanned, transcribed, and kept together. Open any item to read the page beside the words.</p>' +
+      '<p class="home-lead">Letters and papers kept together — open one to see the scan, a short summary, and the transcript.</p>' +
       '<ul class="letter-rows">' +
       letters
         .map(function (letter) {
-          const raw = (letter.review_status || "raw") === "raw";
+          const blurb = letter.summary || letter.context || "";
           return (
             "<li><a href=\"#/letter/" +
             encodeURIComponent(letter.id) +
@@ -140,13 +126,13 @@
             '<span class="when">' +
             escapeHtml(letter.date || "undated") +
             "</span>" +
+            '<span class="row-main">' +
             '<span class="title">' +
             escapeHtml(listTitle(letter)) +
             "</span>" +
-            '<span class="status' +
-            (raw ? " is-raw" : "") +
-            '">' +
-            escapeHtml(letter.review_status || "raw") +
+            (blurb
+              ? '<span class="blurb">' + escapeHtml(blurb) + "</span>"
+              : "") +
             "</span></a></li>"
           );
         })
@@ -169,7 +155,7 @@
     const pages = letter.pages || [];
     const pageNum = Math.max(1, Math.min(page || 1, pages.length || 1));
     const current = pages[pageNum - 1] || { image: "", diplomatic: "" };
-    const place = placeLabel(letter);
+    const places = placeLine(letter);
 
     const pager = pages
       .map(function (p) {
@@ -180,47 +166,55 @@
           encodeURIComponent(letter.id) +
           "/" +
           p.n +
-          '">Page ' +
+          '">' +
           p.n +
           "</a>"
         );
       })
       .join("");
 
+    const summary = letter.summary || "";
+    const context = letter.context || "";
+
     app.innerHTML = shell(
       (letter.date || "undated") + " · " + letter.id,
       '<div class="letter">' +
         '<figure class="stage">' +
-        '<div class="stage-toolbar"><span>Original</span><nav class="pager">' +
-        pager +
-        "</nav></div>" +
+        '<div class="stage-toolbar">' +
+        '<span class="stage-label">Scan · page ' +
+        pageNum +
+        " of " +
+        pages.length +
+        "</span>" +
+        (pages.length > 1 ? '<nav class="pager">' + pager + "</nav>" : "") +
+        "</div>" +
         '<div class="stage-frame"><img src="' +
         asset(current.image) +
         '" alt="Page ' +
         pageNum +
-        '" /></div></figure>' +
+        '" decoding="async" /></div></figure>' +
         '<aside class="side">' +
         "<h1>" +
         escapeHtml(detailTitle(letter)) +
         "</h1>" +
         '<p class="meta">' +
         escapeHtml(senderLabel(letter)) +
-        (place ? " · " + escapeHtml(place) : "") +
+        (letter.date ? " · " + escapeHtml(letter.date) : "") +
+        (places ? "<br>" + escapeHtml(places) : "") +
         (letter.stationery ? "<br>" + escapeHtml(letter.stationery) : "") +
         "</p>" +
-        '<div class="copy-block">' +
-        "<h2>This page</h2>" +
-        '<div class="prose">' +
-        formatText(current.diplomatic, "diplomatic") +
-        "</div></div>" +
-        '<div class="copy-block">' +
-        "<h2>Reading copy</h2>" +
-        '<div class="prose reading">' +
-        formatText(letter.reading || "", "reading") +
-        "</div></div>" +
-        (letter.notes
-          ? '<div class="note">' + escapeHtml(letter.notes) + "</div>"
+        (summary || context
+          ? '<section class="summary">' +
+            "<h2>Summary</h2>" +
+            (summary ? "<p>" + escapeHtml(summary) + "</p>" : "") +
+            (context ? '<p class="context">' + escapeHtml(context) + "</p>" : "") +
+            "</section>"
           : "") +
+        '<section class="copy-block">' +
+        "<h2>Transcript</h2>" +
+        '<div class="prose">' +
+        formatText(letter.reading || current.diplomatic || "") +
+        "</div></section>" +
         "</aside></div>"
     );
   }
@@ -233,7 +227,7 @@
     window.scrollTo(0, 0);
   }
 
-  fetch(asset("data/catalog.json"))
+  fetch(asset("data/catalog.json") + "?v=20260718c")
     .then(function (res) {
       if (!res.ok) throw new Error("Catalog missing (" + res.status + ")");
       return res.json();

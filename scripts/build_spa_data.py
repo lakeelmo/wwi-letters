@@ -19,6 +19,12 @@ OUT_DATA = WEB / "data"
 OUT_IMG = WEB / "images"
 
 
+def clean(text) -> str:
+    if text is None:
+        return ""
+    return str(text).strip()
+
+
 def main() -> None:
     OUT_DATA.mkdir(parents=True, exist_ok=True)
     OUT_IMG.mkdir(parents=True, exist_ok=True)
@@ -58,7 +64,9 @@ def main() -> None:
                 "page_count": data.get("page_count") or len(pages),
                 "review_status": data.get("review_status"),
                 "htr_confidence": data.get("htr_confidence"),
-                "notes": (data.get("notes") or "").strip(),
+                "summary": clean(data.get("summary")),
+                "context": clean(data.get("context")),
+                "notes": clean(data.get("notes")),
                 "reading": reading_path.read_text(encoding="utf-8") if reading_path.exists() else "",
                 "pages": pages,
             }

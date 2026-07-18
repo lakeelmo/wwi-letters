@@ -3,6 +3,7 @@
 .tools/
 .venv/
 __pycache__/
+derivatives/_orient/
 masters/*.heic
 masters/*.png
 web/data/
