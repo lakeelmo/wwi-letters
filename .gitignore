@@ -4,5 +4,6 @@
 .venv/
 __pycache__/
 masters/*.heic
+masters/*.png
 web/data/
 web/images/

@@ -1,0 +1,87 @@
+---
+id: L-00002
+date: null
+date_qualifier: undated
+date_as_written: null
+sender:
+  as_written: "Franny"
+  normalized: "Frans (Franny / Uncle Franny)"
+  notes: "User identified writer as uncle Franny; family-tree top box reads Frans"
+recipient:
+  as_written: null
+  normalized: "Family circular"
+  notes: "General family update / circular, not a single addressed recipient"
+place_written:
+  as_written: null
+  normalized: null
+place_mentioned:
+  - as_written: "California"
+    normalized: "California, USA"
+  - as_written: "Simi Valley"
+    normalized: "Simi Valley, California"
+  - as_written: "Santa Monica"
+    normalized: "Santa Monica, California"
+  - as_written: "Texas"
+    normalized: "Texas, USA"
+  - as_written: "Austin"
+    normalized: "Austin, Texas"
+  - as_written: "Missouri"
+    normalized: "Missouri, USA"
+  - as_written: "St. Louis"
+    normalized: "St. Louis, Missouri"
+  - as_written: "New Haven"
+    normalized: "New Haven, Connecticut"
+  - as_written: "Cape Cod"
+    normalized: "Cape Cod, Massachusetts"
+  - as_written: "Boston"
+    normalized: "Boston, Massachusetts"
+stationery: null
+unit_or_service: null
+page_count: 2
+image_paths:
+  - masters/franny_family_update_p01.png
+  - masters/franny_family_update_p02.png
+derivative_paths:
+  - derivatives/franny_family_update_p01.jpg
+  - derivatives/franny_family_update_p02.jpg
+topics:
+  - family-update
+  - genealogy
+  - pets
+  - careers
+people_mentioned:
+  - Frans
+  - Nancy
+  - Lea
+  - Auko
+  - Ingrid
+  - Jorgen
+  - Nicole
+  - Rachel
+  - Taylor
+  - Leslie
+  - Big Bob
+  - Lorna
+  - Eugene
+  - Laurie
+  - Patricia
+censor_marks: false
+hand: hand-franny
+htr_engine: vision-vlm
+htr_confidence: high
+review_status: raw
+rights: family-archive
+provenance: "User-provided HEIC photos (Downloads IMG_5323/5324); digitized 2026-07-18"
+scan_qc:
+  resolution_px: "3024×4032"
+  dpi_estimate: "phone photo; excellent contrast (dark ink on white)"
+  medium: "ballpoint/ink cursive on unlined white paper"
+  issues:
+    - phone photo (not flatbed); slight perspective
+    - includes hand-drawn family-tree diagram (layout, not pure text)
+    - inserted caret word on p2 (Bicycle)
+notes: >
+  Modern family circular by Uncle Franny (not WWI). Opens with family tree
+  (Frans & Nancy → Lea, Auko, Ingrid, Jorgen) then geographic updates:
+  California, Texas, Missouri, then East Coast (New Haven, Cape Cod, Boston).
+  Excellent HTR test case: high contrast, clear headings, dense proper nouns.

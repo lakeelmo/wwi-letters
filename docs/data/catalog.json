@@ -47,6 +47,87 @@
           "diplomatic": "[Letterhead: Army and Navy Young Men's Christian Association — \"With the Colors\" / YMCA]\n\nPlease [?fly] out so I can\nget to Nashville safe [?eve]\nso we can [?fly] together\nSat. night and we can\ngo out home sunday.\nJust think only [?two] more\ndays and then we\ncan look each other [?in the face / and]\njust keep on loving\neach other and not have\nto be studying about\nwhen we have to depart\nagain.\nOh honey I just want\nyou to always love\nme and when I am\ntired or feeling bad I\nwill be perfectly happy\nif you will just put\nyour arms [?a]round me and\nkiss me.\n"
         }
       ]
+    },
+    {
+      "id": "L-00002",
+      "date": null,
+      "date_as_written": null,
+      "sender": {
+        "as_written": "Franny",
+        "normalized": "Frans (Franny / Uncle Franny)",
+        "notes": "User identified writer as uncle Franny; family-tree top box reads Frans"
+      },
+      "recipient": {
+        "as_written": null,
+        "normalized": "Family circular",
+        "notes": "General family update / circular, not a single addressed recipient"
+      },
+      "place_mentioned": [
+        {
+          "as_written": "California",
+          "normalized": "California, USA"
+        },
+        {
+          "as_written": "Simi Valley",
+          "normalized": "Simi Valley, California"
+        },
+        {
+          "as_written": "Santa Monica",
+          "normalized": "Santa Monica, California"
+        },
+        {
+          "as_written": "Texas",
+          "normalized": "Texas, USA"
+        },
+        {
+          "as_written": "Austin",
+          "normalized": "Austin, Texas"
+        },
+        {
+          "as_written": "Missouri",
+          "normalized": "Missouri, USA"
+        },
+        {
+          "as_written": "St. Louis",
+          "normalized": "St. Louis, Missouri"
+        },
+        {
+          "as_written": "New Haven",
+          "normalized": "New Haven, Connecticut"
+        },
+        {
+          "as_written": "Cape Cod",
+          "normalized": "Cape Cod, Massachusetts"
+        },
+        {
+          "as_written": "Boston",
+          "normalized": "Boston, Massachusetts"
+        }
+      ],
+      "stationery": null,
+      "topics": [
+        "family-update",
+        "genealogy",
+        "pets",
+        "careers"
+      ],
+      "page_count": 2,
+      "review_status": "raw",
+      "htr_confidence": "high",
+      "notes": "Modern family circular by Uncle Franny (not WWI). Opens with family tree (Frans & Nancy → Lea, Auko, Ingrid, Jorgen) then geographic updates: California, Texas, Missouri, then East Coast (New Haven, Cape Cod, Boston). Excellent HTR test case: high contrast, clear headings, dense proper nouns.",
+      "reading": "…What family is all about\n\nA brief description follows with names, updates and locations…\n\nFamily tree: Frans & Nancy → Lea (Frans, Nicole, Rachel), Auko (Frans), Ingrid, Jorgen (Taylor).\n\nCalifornia — Ingrid, formerly in advertising in Los Angeles and Japan with Japan Airlines, now works as a vet technician in Simi Valley (prefers larger animals). Her Jack Russell Terrier is “Little Bear.” Leslie and daughter Taylor jog in Santa Monica. Jorgen balances legal work at Toyota with travel to Japan and hands-on house projects (tools and cacti). Dogs “Big Blue” and “Buffie” (Bouvier des Flandres) welcome little Taylor (Scottie).\n\nOn to Texas — “Big Bob” is #1 company representative in the USA and has a talent for the Texas Two Step. Lea does interior design for retirement living facilities in Japan. Rachel shines as a “Star Duster” at junior sports events and senior centers around Austin. Heidi (Dutch Keeshond) and three rabbits round out the household.\n\nUp in Missouri — Big Frans is comfortable in a red enameled Adirondack chair of his own design. Fiancée Lorna claims the longest rambling ivy west of the Mississippi. They celebrated their engagement at the Racquet Club in St. Louis; both practice law (Frans in St. Louis, Lorena in Springfield, Illinois). A kitten from Texas is a new addition.\n\nEast Coast — New Haven: Nicole and Eugene are immersed in Yale life; Nicole is with the Yale Endowment Office; after the engagement party they plan Cape Cod, then Mexico City and Acapulco to see Eugene’s family. Cape Cod: Frans Jr. (Aako) juggles work with culinary school in Boston (“Chef de Cuisine”); Laurie rode in the Boston–New York AIDS Bicycle Ride. Boston: another Frans (HoTo) works as a film gaffer; Patricia is an admissions counselor at Emmanuel College (and an excellent salsa dancer); they share life with Siberian Huskies Grindle and Cleo and travel widely.\n\n---\nEditorial notes: Light punctuation normalization. Some nicknames/spellings remain uncertain (Auko/Aako, Lorna/Lorena, HoTo, Laurie/Lennie). Diagram names transcribed from the family tree boxes.\n",
+      "pages": [
+        {
+          "n": 1,
+          "image": "images/franny_family_update_p01.jpg",
+          "diplomatic": ". . . What family is all about\n\n[Family tree diagram — top right]\n  Frans — Nancy\n    ├─ Lea → Frans, Nicole, Rachel\n    ├─ Auko → Frans\n    ├─ Ingrid\n    └─ Jorgen → Taylor\n\nA brief description follows\nwith names, updates and locations . . .\n\nCalifornia\nIngrid who worked in advertising in\nLos Angeles and Japan with Japan Airlines\nnow works as a vet-technician in Simi\nValley. She has a preference for larger\nanimals. \"Little Bear\", never one to be\nintimidated by size . . . agrees. He's a\nJack Russel Terrier.\nLeslie and daughter Taylor can be spotted\non their daily jogging routine in Santa\nMonica. Jorgen balances his legal\nprofession at Toyota and travels to Japan\nwith hands-on work around the house. His\nspeciality combines exotic projects, tools\nand cacti. \"Big Blue and Buffie\" (Bouvier\nde Flandres) are happy to have little\nTaylor (Scottie) as a new member of the\nfamily.\n\nOn to Texas\n\"Big Bob\" has been discovered to have a\ntalent for the \"Texas Two Step\" in addition\nto being #1 Representative of his Company\nin the entire USA. Lea is doing well in\nher field of Interior Design for Retirement\nLiving Facilities in Japan. Rachel does\nwell in school and shines as a \"Star\nDuster\" at junior sports events and Senior\nCitizen Centers in the Austin metropolitan\narea. Heidi a Dutch Keeshond and three\nrabbits round out the family.\n\nup in Missouri\nBig Frans is quite comfortable in a red\nenameled Adirondack Chair of his own design\nand making. Lorna his fiancée can lay claim\nto the longest rambling ivy west of the\nMississippi.\n"
+        },
+        {
+          "n": 2,
+          "image": "images/franny_family_update_p02.jpg",
+          "diplomatic": "Missouri Continued\nThey recently celebrated their engagement\nat the Racquet Club in St. Louis. Each are\npracticing lawyers.. Frans in St. Louis and\nLorena in Springfield Illinois. Their kitten\nfrom Texas (Guess from who) is a new addition\nto the household.\n\nMoving to the East Coast\n\nNew Haven:\nNicole and Eugene find their lives pretty\nmuch involved with the many opportunities\nYale has to offer. After their travel to\nSt. Louis for Frans and Lorena's engagement\nparty they now look forward to visiting\nCape Cod.. then Mexico City and Acapulco\nto visit Eugene's family. Nicole is with\nthe Yale Endowment Office.\n\nCape Cod\nFrans Jr. (Aako) is now fully occupied\njuggling his work in Cape Cod and classes\nat the Cambridge School of Culinary Arts\nin Boston where he will graduate as \"Chef\nde Cuisine\". Laurie provides an extra\ndimension to the picture. She recently made\nfamily history by participating in the\nAnnual New York ^Bicycle AIDS Ride from\nBoston to New York. [?Laurie/Lennie]'s\nbiggest thrill... pedalling down 5th Avenue!\n\nBoston\nAnother Frans (HoTo) has his hands full\nwith his chosen career in the Film Making\nIndustry as a gaffer (lighting). An\nindependent, he has fortunately been kept\nbusy and his network of contacts continues\nto grow. Patricia is an Admissions Counselor\nat Emmanuel College in Boston (She is an\nexcellent Salsa Dancer) They share their\ntime with \"Grindle and Cleo\", Siberian\nHuskies. Frans and Patricia travel\nextensively, both stateside and Latin\nAmerica.\n"
+        }
+      ]
     }
   ]
 }

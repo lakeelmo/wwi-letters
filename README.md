@@ -1,60 +1,50 @@
 # WWI Letters Archive
 
-Local catalogue for scanning, transcribing, and documenting World War I–era correspondence.
+Handwritten WWI-era correspondence — scanned, transcribed, and browsable.
 
-## Static SPA (GitHub Pages)
+## Live site
 
-Hash-routed SPA in `web/` — collection list + side-by-side scan/transcript.
+**https://lakeelmo.github.io/wwi-letters/**
+
+Static SPA (hash-routed). The GitHub repo is currently **public** so Pages can host on a free plan. Treat content as visible on the open web until you add access control.
+
+## Local SPA preview
 
 ```bash
-python scripts/build_spa_data.py   # refreshes web/data + web/images
-python3 -m http.server 8765 --directory web
+python scripts/build_spa_data.py
+python3 -m http.server 8765 --directory docs
 ```
 
-Open http://127.0.0.1:8765
-
-After push to `main`, GitHub Actions deploys Pages → **https://lakeelmo.github.io/wwi-letters/**
-
-**Privacy:** GitHub Pages sites are **public on the internet** by default, even when this repository is private. Private page access requires GitHub Enterprise Cloud. Do not enable / leave Pages on if the letters must stay family-only.
-
-## Local editor (FastAPI — saves corrections)
+## Local editor (saves transcript files)
 
 ```bash
-cd ~/Projects/wwi-letters
-python3 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
 uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-Open http://127.0.0.1:8000 — editable transcripts (deployed SPA is read-only).
-
-## Docker
+After editing metadata/transcripts, rebuild `docs/` before pushing:
 
 ```bash
-docker compose up --build
+python scripts/build_spa_data.py
+rm -rf docs && cp -R web docs
+mkdir -p docs/data docs/images
+cp web/data/* docs/data/
+cp web/images/* docs/images/
+touch docs/.nojekyll
 ```
-
-Optional; not required. Prefer the venv if Docker is unavailable.
 
 ## Layout
 
 ```
-masters/       Archival PNG (+ HEIC ignored by git)
-derivatives/   JPEG viewing copies
-transcripts/diplomatic/   Line-faithful drafts ([?uncertain])
-transcripts/reading/      Lightly normalized reading copies
-metadata/      Per-letter YAML catalogue records
-app/           FastAPI editor
-web/           Static SPA for browsing / Pages
+masters/       Archival PNG
+derivatives/   JPEG sources for the SPA
+transcripts/   Diplomatic + reading copies
+metadata/      Per-letter YAML
+app/           FastAPI editor (local)
+web/           SPA source
+docs/          Published SPA (GitHub Pages)
 ```
-
-## Handwriting recognition notes
-
-- Apple Vision OCR on these samples read **only** the printed YMCA letterhead — not the pencil cursive.
-- Drafts here were produced with vision-language transcription; treat `[?…]` as needs human check.
-- For collection-scale accuracy: Transkribus public English handwriting models, then a custom model on this hand after ~25–75 corrected pages.
 
 ## First letter
 
-**L-00001** — 1919-04-10 — to Blanche — Army & Navy YMCA stationery — Nashville / discharge.
+**L-00001** — 1919-04-10 — to Blanche — Army & Navy YMCA — Nashville / discharge.

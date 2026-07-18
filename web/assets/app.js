@@ -37,6 +37,25 @@
     return s.normalized || s.as_written || "Unknown writer";
   }
 
+  function listTitle(letter) {
+    const r = letter.recipient || {};
+    const to = r.normalized || r.as_written;
+    if (to && /circular|family update/i.test(to)) {
+      return senderLabel(letter).split("(")[0].trim() + " — family update";
+    }
+    if (to) return "To " + to;
+    return letter.id;
+  }
+
+  function detailTitle(letter) {
+    const r = letter.recipient || {};
+    const to = r.normalized || r.as_written;
+    if (to && /circular|family update/i.test(to)) {
+      return "Family update";
+    }
+    return "To " + (to || letter.id);
+  }
+
   function placeLabel(letter) {
     const p = (letter.place_mentioned || [])[0];
     if (!p) return "";
@@ -76,8 +95,8 @@
             '<span class="when">' +
             escapeHtml(letter.date || "undated") +
             "</span>" +
-            '<span class="title">To ' +
-            escapeHtml(recipientLabel(letter)) +
+            '<span class="title">' +
+            escapeHtml(listTitle(letter)) +
             "</span>" +
             '<span class="status' +
             (raw ? " is-raw" : "") +
@@ -136,8 +155,8 @@
         pageNum +
         '" /></div></figure>' +
         '<aside class="side">' +
-        "<h1>To " +
-        escapeHtml(recipientLabel(letter)) +
+        "<h1>" +
+        escapeHtml(detailTitle(letter)) +
         "</h1>" +
         '<p class="meta">' +
         escapeHtml(senderLabel(letter)) +

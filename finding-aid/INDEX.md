@@ -3,6 +3,7 @@
 | ID | Date | From | To | Place(s) | Pages | Status |
 |----|------|------|----|----------|-------|--------|
 | L-00001 | 1919-04-10 | Unknown soldier | Blanche | Nashville, Tenn. | 2 | raw |
+| L-00002 | undated | Uncle Franny (Frans) | Family circular | CA / TX / MO / East Coast | 2 | raw |
 
 ## L-00001 summary
 
