@@ -68,6 +68,14 @@
     text = text.replace(/\n---\n[\s\S]*$/, "").trim();
     text = text.replace(/^\[Letterhead:[^\]]*\]\s*/i, "");
 
+    function inlineFormat(s) {
+      // *foreign* [translation] → <em>foreign</em> [translation]
+      s = escapeHtml(s);
+      s = s.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+      s = s.replace(/\[illegible([^\]]*)\]/gi, '<span class="illegible">[illegible$1]</span>');
+      return s;
+    }
+
     return text
       .split(/\n\s*\n/)
       .map(function (block) {
@@ -88,7 +96,7 @@
           return "<h3>" + escapeHtml(lines[0].replace(/:$/, "")) + "</h3>";
         }
 
-        return "<p>" + escapeHtml(lines.join(" ")) + "</p>";
+        return "<p>" + inlineFormat(lines.join(" ")) + "</p>";
       })
       .join("");
   }
@@ -227,7 +235,7 @@
     window.scrollTo(0, 0);
   }
 
-  fetch(asset("data/catalog.json") + "?v=20260718c")
+  fetch(asset("data/catalog.json") + "?v=20260718e")
     .then(function (res) {
       if (!res.ok) throw new Error("Catalog missing (" + res.status + ")");
       return res.json();
