@@ -282,7 +282,7 @@ a:hover { color: var(--ink); }
 }
 
 .side h2 {
-  margin: 1.5rem 0 0.5rem;
+  margin: 0 0 0.65rem;
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -290,19 +290,47 @@ a:hover { color: var(--ink); }
   color: var(--sage);
 }
 
-.transcript {
-  margin: 0;
-  white-space: pre-wrap;
-  font-family: "Fraunces", serif;
-  font-weight: 500;
-  font-size: 1.02rem;
-  line-height: 1.55;
+.copy-block {
+  margin-top: 1.35rem;
+}
+
+.prose {
   color: var(--ink);
 }
 
-.transcript.reading {
-  font-size: 0.98rem;
+.prose p {
+  margin: 0 0 0.85rem;
+  font-family: "Fraunces", serif;
+  font-weight: 500;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.prose p:last-child { margin-bottom: 0; }
+
+.prose h3 {
+  margin: 1.15rem 0 0.45rem;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--signal);
+}
+
+.prose h3:first-child { margin-top: 0; }
+
+.prose.reading p {
+  font-size: 1.02rem;
   color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.prose .empty-copy {
+  color: var(--ink-soft);
+  font-style: italic;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.95rem;
 }
 
 .note {
@@ -310,7 +338,8 @@ a:hover { color: var(--ink); }
   padding-top: 1.25rem;
   border-top: 1px solid var(--line);
   color: var(--ink-soft);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 .error {

@@ -1,12 +1,14 @@
-# Finding aid — WWI Letters
+# Finding aid — Family Archive
 
-| ID | Date | From | To | Place(s) | Pages | Status |
-|----|------|------|----|----------|-------|--------|
+| ID | Date | From | To / type | Place(s) | Pages | Status |
+|----|------|------|-----------|----------|-------|--------|
 | L-00001 | 1919-04-10 | Unknown soldier | Blanche | Nashville, Tenn. | 2 | raw |
 | L-00002 | undated | Uncle Franny (Frans) | Family circular | CA / TX / MO / East Coast | 2 | raw |
 
-## L-00001 summary
+## L-00001
 
-Army and Navy YMCA “With the Colors” stationery. Writer reports receiving Blanche’s Tuesday letter (postmarked Nashville 8:30 p.m.), having passed exams, signed discharges and payroll, and expecting discharge so he can catch a train. Page 2 asks Blanche to come to Nashville for Saturday night / Sunday and closes affectionately.
+Army and Navy YMCA “With the Colors” stationery. Demobilization letter mentioning Nashville, discharges, and a hoped-for reunion with Blanche.
 
-Uncertainties remain in the diplomatic transcripts (marked `[?…]`). Preferred next step: human line-by-line correction in the web viewer.
+## L-00002
+
+Modern family circular with hand-drawn tree (Frans & Nancy → Lea, Auko, Ingrid, Jorgen) and geographic updates.

@@ -1,4 +1,4 @@
-"""WWI Letters archive — local catalogue and transcription viewer."""
+"""WWI / Family Archive — local catalogue and transcription viewer."""
 
 from __future__ import annotations
 
@@ -16,7 +16,7 @@ DIPLOMATIC = ROOT / "transcripts" / "diplomatic"
 READING = ROOT / "transcripts" / "reading"
 DERIV = ROOT / "derivatives"
 
-app = FastAPI(title="WWI Letters Archive")
+app = FastAPI(title="Family Archive")
 app.mount("/images", StaticFiles(directory=str(DERIV)), name="images")
 app.mount("/static", StaticFiles(directory=str(Path(__file__).parent / "static")), name="static")
 templates = Jinja2Templates(directory=str(Path(__file__).parent / "templates"))
@@ -29,7 +29,7 @@ def load_letters() -> list[dict]:
             data = yaml.safe_load(f)
         data["_meta_path"] = str(path)
         letters.append(data)
-    letters.sort(key=lambda x: (x.get("date") or "9999", x.get("id") or ""))
+    letters.sort(key=lambda x: (str(x.get("date") or "9999"), x.get("id") or ""))
     return letters
 
 
@@ -69,7 +69,7 @@ async def index(request: Request):
     letters = load_letters()
     return templates.TemplateResponse(
         "index.html",
-        {"request": request, "letters": letters},
+        {"request": request, "letters": letters, "brand": "Family Archive"},
     )
 
 
@@ -93,6 +93,7 @@ async def letter_detail(request: Request, letter_id: str, page: int = 1):
             "current": current,
             "diplomatic": diplomatic,
             "reading": reading,
+            "brand": "Family Archive",
         },
     )
 
@@ -104,7 +105,7 @@ async def save_transcript(
     diplomatic: str = Form(...),
     reading: str = Form(""),
 ):
-    letter_by_id(letter_id)  # validate
+    letter_by_id(letter_id)
     dip_path = DIPLOMATIC / f"{letter_id}_p{page:02d}.txt"
     dip_path.parent.mkdir(parents=True, exist_ok=True)
     dip_path.write_text(diplomatic.strip() + "\n", encoding="utf-8")
@@ -112,7 +113,6 @@ async def save_transcript(
         read_path = READING / f"{letter_id}.txt"
         read_path.parent.mkdir(parents=True, exist_ok=True)
         read_path.write_text(reading.strip() + "\n", encoding="utf-8")
-    # bump review status hint in yaml if still raw
     meta_path = META_DIR / f"{letter_id}.yaml"
     text = meta_path.read_text(encoding="utf-8")
     if "review_status: raw" in text:

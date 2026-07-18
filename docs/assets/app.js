@@ -27,11 +27,6 @@
     return { name: "home" };
   }
 
-  function recipientLabel(letter) {
-    const r = letter.recipient || {};
-    return r.normalized || r.as_written || letter.id;
-  }
-
   function senderLabel(letter) {
     const s = letter.sender || {};
     return s.normalized || s.as_written || "Unknown writer";
@@ -50,9 +45,7 @@
   function detailTitle(letter) {
     const r = letter.recipient || {};
     const to = r.normalized || r.as_written;
-    if (to && /circular|family update/i.test(to)) {
-      return "Family update";
-    }
+    if (to && /circular|family update/i.test(to)) return "Family update";
     return "To " + (to || letter.id);
   }
 
@@ -62,10 +55,62 @@
     return p.normalized || p.as_written || "";
   }
 
+  /** Turn plain transcript text into readable HTML paragraphs / headings. */
+  function formatText(raw, mode) {
+    if (!raw || !String(raw).trim()) {
+      return '<p class="empty-copy">No transcript yet.</p>';
+    }
+    let text = String(raw).replace(/\r\n/g, "\n").trim();
+
+    // Drop editorial footer from reading copies
+    text = text.replace(/\n---\n[\s\S]*$/, "").trim();
+
+    // Strip letterhead clutter from diplomatic view
+    if (mode === "diplomatic") {
+      text = text.replace(/^\[Letterhead:[^\]]*\]\s*/i, "");
+    }
+
+    const blocks = text.split(/\n\s*\n/);
+    return blocks
+      .map(function (block) {
+        const lines = block.split("\n").map(function (l) {
+          return l.trim();
+        }).filter(Boolean);
+        if (!lines.length) return "";
+
+        // Single short line that looks like a section heading
+        if (
+          lines.length === 1 &&
+          lines[0].length < 48 &&
+          !/[.!?]$/.test(lines[0]) &&
+          (/^[A-Z]/.test(lines[0]) || /:$/.test(lines[0]) || /continued/i.test(lines[0]))
+        ) {
+          return "<h3>" + escapeHtml(lines[0].replace(/:$/, "")) + "</h3>";
+        }
+
+        // Diplomatic: preserve soft line breaks inside a paragraph
+        if (mode === "diplomatic") {
+          return (
+            "<p>" +
+            lines
+              .map(function (l) {
+                return escapeHtml(l);
+              })
+              .join("<br>") +
+            "</p>"
+          );
+        }
+
+        // Reading: join wrapped lines into flowing prose
+        return "<p>" + escapeHtml(lines.join(" ")) + "</p>";
+      })
+      .join("");
+  }
+
   function shell(crumb, body) {
     return (
       '<header class="shell-header">' +
-      '<p class="mark"><a href="#/">WWI Letters</a></p>' +
+      '<p class="mark"><a href="#/">Family Archive</a></p>' +
       '<p class="crumb">' +
       escapeHtml(crumb) +
       "</p></header>" +
@@ -77,13 +122,13 @@
     const letters = catalog.letters || [];
     app.innerHTML =
       '<main class="home">' +
-      '<p class="home-meta"><span>Family archive</span><span>' +
+      '<p class="home-meta"><span>Private collection</span><span>' +
       letters.length +
-      " letter" +
+      " item" +
       (letters.length === 1 ? "" : "s") +
       "</span></p>" +
-      '<h1 class="home-brand">WWI Letters</h1>' +
-      '<p class="home-lead">Handwritten correspondence, scanned and transcribed — open a letter to read the page beside the words.</p>' +
+      '<h1 class="home-brand">Family Archive</h1>' +
+      '<p class="home-lead">Letters and family papers — scanned, transcribed, and kept together. Open any item to read the page beside the words.</p>' +
       '<ul class="letter-rows">' +
       letters
         .map(function (letter) {
@@ -116,7 +161,7 @@
     if (!letter) {
       app.innerHTML = shell(
         "Missing",
-        '<main class="home"><p class="error">Letter not found. <a href="#/">Return home</a></p></main>'
+        '<main class="home"><p class="error">Item not found. <a href="#/">Return home</a></p></main>'
       );
       return;
     }
@@ -146,12 +191,12 @@
       (letter.date || "undated") + " · " + letter.id,
       '<div class="letter">' +
         '<figure class="stage">' +
-        '<div class="stage-toolbar"><span>Scan</span><nav class="pager">' +
+        '<div class="stage-toolbar"><span>Original</span><nav class="pager">' +
         pager +
         "</nav></div>" +
         '<div class="stage-frame"><img src="' +
         asset(current.image) +
-        '" alt="Letter page ' +
+        '" alt="Page ' +
         pageNum +
         '" /></div></figure>' +
         '<aside class="side">' +
@@ -163,14 +208,16 @@
         (place ? " · " + escapeHtml(place) : "") +
         (letter.stationery ? "<br>" + escapeHtml(letter.stationery) : "") +
         "</p>" +
-        "<h2>Diplomatic transcript</h2>" +
-        '<pre class="transcript">' +
-        escapeHtml(current.diplomatic) +
-        "</pre>" +
+        '<div class="copy-block">' +
+        "<h2>This page</h2>" +
+        '<div class="prose">' +
+        formatText(current.diplomatic, "diplomatic") +
+        "</div></div>" +
+        '<div class="copy-block">' +
         "<h2>Reading copy</h2>" +
-        '<pre class="transcript reading">' +
-        escapeHtml(letter.reading || "") +
-        "</pre>" +
+        '<div class="prose reading">' +
+        formatText(letter.reading || "", "reading") +
+        "</div></div>" +
         (letter.notes
           ? '<div class="note">' + escapeHtml(letter.notes) + "</div>"
           : "") +
